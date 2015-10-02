@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="globaltalentgrid.withme.intent"
+        version="0.0.1">
+
+  <name>Receive Send Intents - GlobalTalentGrid</name>
+
+  <description>
+    PhoneGap Build Plugin to enable app to receive SEND intents. You would still need the WebIntent Plugin.
+  </description>
+
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova" version=">=3.3.0"/>
+  </engines>
+
+  <!-- ios -->
+  <platform name="ios">
+
+    <config-file target="*-Info.plist" parent="CFBundleDocumentTypes">
+      <array>
+<dict>
+   <key>CFBundleTypeName</key>
+   <string>WithMe Share</string>
+   <key>LSItemContentTypes</key>
+       <array>
+           <string>public.data</string>
+           <string>public.image</string>
+       </array>
+   <key>LSHandlerRank</key>
+   <string>Alternate</string>
+</dict>
+      </array>
+    </config-file>
+  </platform>
+
+
+  <!-- android -->
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="ReceiveSendIntents">
+        <param name="android-package" value="nl.xservices.plugins.ReceiveSendIntents"/>
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/*/application/activity">
+        <intent-filter>
+          <action android:name="android.intent.action.SEND" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="text/plain" />
+        </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.SEND" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="video/*" />
+        </intent-filter>
+        <intent-filter>
+          <action android:name="android.intent.action.SEND" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <data android:mimeType="image/*" />
+        </intent-filter>
+    </config-file>    
+  </platform>
+
+</plugin>
