@@ -11,6 +11,7 @@
   </description>
 
   <license>MIT</license>
+  <preference name="LAUNCHMODE" />
 
   <engines>
     <engine name="cordova" version=">=3.3.0"/>
@@ -46,7 +47,8 @@
       </feature>
     </config-file>
 
-    <config-file target="AndroidManifest.xml" parent="/*/application/activity">
+    <config-file target="AndroidManifest.xml" parent="/*/application">
+    <activity android:name=".SendActivity" android:launchMode="$LAUNCHMODE" android:icon="@drawable/icon"  android:label="@string/app_name" android:clearTaskOnLaunch="true">
         <intent-filter>
           <action android:name="android.intent.action.SEND" />
           <category android:name="android.intent.category.DEFAULT" />
@@ -62,7 +64,8 @@
           <category android:name="android.intent.category.DEFAULT" />
           <data android:mimeType="image/*" />
         </intent-filter>
-    </config-file>    
+      </activity>
+    </config-file>
   </platform>
 
 </plugin>
